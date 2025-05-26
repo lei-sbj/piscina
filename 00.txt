@@ -1,1 +1,77 @@
+letda-si@c2r2p3 ~ % ls
+cat	 Documents  goinfre	   leilei  Pictures  Templates
+Desktop  Downloads  Labs_B-Mugnol  Music   Public    Videos
+letda-si@c2r2p3 ~ % git clone git@vogsphere-v2.42sp.org.br:vogsphere/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si
+Cloning into 'intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si'...
+warning: You appear to have cloned an empty repository.
+letda-si@c2r2p3 ~ % git clone git@vogsphere-v2.42sp.org.br:vogsphere/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si
+fatal: destination path 'intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si' already exists and is not an empty directory.
+letda-si@c2r2p3 ~ % ls 
+cat								  leilei
+Desktop								  Music
+Documents							  Pictures
+Downloads							  Public
+goinfre								  Templates
+intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si  Videos
+Labs_B-Mugnol
+letda-si@c2r2p3 ~ % cd intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si
+letda-si@c2r2p3 ~/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si
+ % mk dirr
+zsh: command not found: mk
+letda-si@c2r2p3 ~/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si
+ % mkdir
+mkdir: missing operand
+Try 'mkdir --help' for more information.
+letda-si@c2r2p3 ~/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si
+ % mkdir eu
+letda-si@c2r2p3 ~/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si
+ % cd eu
+letda-si@c2r2p3 ~/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si/eu
+ %  cp ~/Downloads/aceito.txt . 
+letda-si@c2r2p3 ~/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si/eu
+ % ls
+aceito.txt
+letda-si@c2r2p3 ~/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si/eu
+ % git add
+Nothing specified, nothing added.
+hint: Maybe you wanted to say 'git add .'?
+hint: Turn this message off by running
+hint: "git config advice.addEmptyPathspec false"
+letda-si@c2r2p3 ~/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si/eu
+ % git add .
+letda-si@c2r2p3 ~/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si/eu
+ % git commit -m "subi aceito"
+[master (root-commit) 18b0f3a] subi aceito
+ Committer: Leticia Da Silva Santa Barbara De Jesus <letda-si@c2r2p3.42sp.org.br>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+ create mode 100644 eu/aceito.txt
+letda-si@c2r2p3 ~/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si/eu
+ % git push
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 20 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (4/4), 506 bytes | 253.00 KiB/s, done.
+Total 4 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: . Processing 1 references
+remote: Processed 1 references in total
+To vogsphere-v2.42sp.org.br:vogsphere/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si
+letda-si@c2r2p3 ~/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si/eu
+ % 
+letda-si@c2r2p3 ~/intra-uuid-60031560-2adf-4c46-a02e-b6e67f929f66-6585050-letda-si/eu
+ % 
+
+
 
