@@ -2,3 +2,25 @@
 # BONS LINKS # 
   ##  <https://docs.aws.amazon.com/pt_br/codecommit/latest/userguide/how-to-basic-git.html> 
 
+#01 -- criei pasta shell00 em Documents
+#02 -- abri o terminal desta pasta
+#03 -- adicionei ao repositorio remoto [endereço gerado pela intra]
+git clone git@vogsphere-v2.42sp.org.br:vogsphere/intra-uuid-72f02279-4fa8-4f2c-bab4-8afdea6d7852-6587434-letda-si
+
+#04 -- entrei no repositorio (digita inicio + tab)
+cd intra-uuid-72f02279-4fa8-4f2c-bab4-8afdea6d7852-6587434-letda-si 
+
+#05 -- criei pasta ex00
+mkdir ex00
+
+#06 -- criar arquivo como /bin/sh 
+    # criar arquivo texto com extensao .sh
+    # iniciar texto com 1a linha  >>  #!/bin/dash
+    # linhas seguintes de comandos shell (que quiser) 
+
+
+
+# N # -- ENTREGA: SUBIR NO SISTEMA --
+git add .
+git commit -m "texto"
+git push 
