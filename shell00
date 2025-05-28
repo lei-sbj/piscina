@@ -1,6 +1,8 @@
 ## pesquisa overview ##
 # BONS LINKS # 
   ##  <https://docs.aws.amazon.com/pt_br/codecommit/latest/userguide/how-to-basic-git.html> 
+   # FUNÇAO TOUCH
+  ## <https://www.gnu.org/software/coreutils/touch> 
 
 #01 -- criei pasta shell00 em Documents
 #02 -- abri o terminal desta pasta
@@ -15,10 +17,18 @@ mkdir ex00
 
 #06 -- criar arquivo como /bin/sh 
     # criar arquivo texto com extensao .sh
+touch z.sh
     # iniciar texto com 1a linha  >>  #!/bin/dash
     # linhas seguintes de comandos shell (que quiser) 
+        # escrevi no arquivo Z \n
+        echo "Z \n" > z.sh
+        # quando chamo o arquivo com echo $(cat z.sh) ele volta a msg certa, mas preciso chamar usando cat z
+### Correçao de erro
+# abri o arquivo, tirei o \n e deixei so a quebra de linha
+# renomeei direto na pasta de z.sh para z
 
-
+#00 -- Retornar conteudo de um arquivo
+cat z
 
 # N # -- ENTREGA: SUBIR NO SISTEMA --
 git add .
