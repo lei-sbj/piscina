@@ -1,0 +1,313 @@
+/*
+Inserir e configurar header > no vscode Ctrl + Alt + H
+git config --global user.email letda-si@student.42sp.org.br
+ou pelo vscode 42 header > settings mesmo
+
+TABS AO INVES DE ESPAÇOS
+ativar configuração para>> Indent using Tabs
+*/
+
+/* ARQUIVO PARA TESTE ### MANTÉM A FUNÇÃO MAIN ### gcc file.c ### ./a.out ### CONFERE OUTPUT */
+#include <unistd.h>
+
+void    ft_putchar(char c)
+{
+    write (1, &c, 1);
+}
+
+int main(void)
+{
+    ft_putchar ('c');
+    return (0);
+}
+
+/**********output***********/
+/*********>c		
+****************************/
+
+/* ARQUIVO PARA ENVIO */
+#include <unistd.h>
+
+void    ft_putchar(char c)
+{
+    write (1, &c, 1);
+}
+
+/*
+int main(void)
+{
+    ft_putchar ('c');
+    return (0);
+}
+*/
+/* #### FIM #### ARQUIVO PARA ENVIO */
+
+/*		revisão		*/
+norminette -R file.c
+/*		Moulinette compila assim		*/
+cc -w -w -w file 
+/*		revisão		*/
+sempre que for solicitado um PROGRAMA, esepra-se a função main() dentro do arquivo.
+
+bibliotecas standard <string.h> https://petbcc.ufscar.br/string/
+
+<stdio.h> size_t: tipo inteiro positivo destinado a guardar o tamanho que um objeto ocupa na memória.
+
+//Exemplo1: Programa usando loop for em C
+#include <stdio.h>
+#include <conio.h>
+int main(void)
+{
+  int contador; //variável de controle do loop
+  
+  for(contador = 1; contador <= 10; contador++)
+  {
+    printf("%d ", contador);
+  }
+  
+  getch();
+  return(0);
+}
+//>1 2 3 4 5 6 7 8 9 10
+
+//TESTES COM LOOP 
+// usando for (não é aceito nesse exercício)
+#include <unistd.h>
+
+void	ft_print_alphabet(void)
+{
+	char	x;
+
+	for (x = 'a'; x <= 'z'; x++)
+	{
+		write(1, &x, 1);
+	}
+}
+
+int	main(void)
+{
+	ft_print_alphabet();
+	return (0);
+}
+
+//usando while
+#include <unistd.h>
+
+void ft_print_alphabet(void)
+{
+    char x = 'a';
+
+    while (x <= 'z')
+    {
+        write(1, &x, 1);
+        write(1, " ", 1);
+        x++;
+    }
+}
+
+int main(void)
+{
+    ft_print_alphabet();
+    return 0;
+}
+
+//RECURSIVAMENTE ---- EQUIVALENTE COM WHILE
+#include <unistd.h>
+
+void print_alphabet_while_recursive(char x)
+{
+    if (x > 'z')
+        return;  // base case: stop recursion
+    
+    write(1, &x, 1);
+    write(1, " ", 1);
+
+    print_alphabet_while_recursive(x + 1);  // recursive call simulates loop iteration
+}
+
+void ft_print_alphabet(void)
+{
+    print_alphabet_while_recursive('a');
+    write(1, "\n", 1);
+}
+
+int main(void)
+{
+    ft_print_alphabet();
+    return 0;
+}
+
+//RECURSIVAMENTE ---- SEM LOOP
+#include <unistd.h>
+
+void ft_print_alphabet_recursive(char x) // ESSA ESTRUTURA NÃO ATENDE AO EXERCÍCIO
+{
+    if (x > 'z') //condiçao de controle > STOP if bigger than 'z'
+    {
+        write(1, "\n", 1);
+        return;
+    }
+    write(1, &x, 1);
+    write(1, " ", 1);
+    ft_print_alphabet_recursive(x + 1); //função faz papel de while
+}
+
+void ft_print_alphabet(void)
+{
+    ft_print_alphabet_recursive('a');
+}
+
+int main(void)
+{
+    ft_print_alphabet();
+    return 0;
+}
+
+// ALFABETO REVERSO __ usando IF 
+
+#include <unistd.h>
+
+void	ft_while(char x) // não atende ao protótipo do enunciado
+{
+	if (x < 'a')
+	{
+		write(1, "\n", 1);
+		return ;
+	}
+	write(1, &x, 1);
+	write(1, " ", 1);
+	ft_while(x - 1);
+}
+
+void	ft_print_reverse_alphabet(void)
+{
+	ft_while('z'); // start em z
+}
+
+int	main(void)
+{
+	ft_print_reverse_alphabet();
+	return (0);
+}
+
+// ALFABETO REVERSO __ usando IF [aceito]
+#include <unistd.h>
+
+void	ft_print_reverse_char(char x)
+{
+	if (x < 'a')
+	{
+		write(1, "\n", 1);
+		return ;
+	}
+	write(1, &x, 1);
+	ft_print_reverse_char(x - 1);
+}
+
+void	ft_print_reverse_alphabet(void)
+{
+	ft_print_reverse_char('z');
+}
+
+int	main(void)
+{
+	ft_print_reverse_alphabet();
+	return (0);
+}
+
+// PRINT NUMBERS 
+#include <unistd.h>
+
+void	ft_putchar(char x)
+{
+	if (x > '9')
+	{
+		write(1, "\n", 1);
+		return ;
+	}
+	write(1, &x, 1);
+	ft_putchar(x + 1);
+}
+
+void	ft_print_numbers(void)
+{
+	ft_putchar('0');
+}
+
+/*
+int	main(void)
+{
+	ft_print_numbers();
+	return (0);
+}
+*/
+
+// RETORNA SE NEGATIVO
+#include <unistd.h>
+
+void	ft_is_negative(int n)
+{
+	if (n >= 0)
+	{
+		write(1, "P", 1);
+	}
+	else
+	{
+		write(1, "N", 1);
+	}
+	write(1, "\n", 1);
+
+}
+
+/*
+int	main(void)
+{
+	ft_is_negative(82);
+	return (0);
+}
+*/
+
+// EX05 - IMPRIMIR COMBINAÇÃO DE 3 DÍGITOS
+#include <unistd.h>
+
+void	ft_putchar(char n)
+{
+	write(1, &n, 1);
+}
+
+void	ft_print_comb(void)
+{
+	int	a;
+	int	b;
+	int	c;
+
+	a = 0;
+	while (a <= 7)
+	{
+		b = a + 1;
+		while (b <= 8)
+		{
+			c = b + 1;
+			while (c <= 9)
+			{
+				ft_putchar(a + '0');
+				ft_putchar(b + '0');
+				ft_putchar(c + '0');
+				if (a != 7 | b != 8 | c != 9)
+				{
+					write(1, ", ", 2);
+				}
+				c++;
+			}
+			b++;
+		}
+		a++;
+	}
+}
+/*
+int	main(void)
+{
+	ft_print_comb();
+	return (0);
+}
+*/
