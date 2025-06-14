@@ -90,19 +90,20 @@ int	main(void)
 	return (0);
 }
 
-//usando while
+//usando while ***** FORMATO ESPERADO, SE NAO PEDIU QUEBRA DE LINHA NAO EH PRA BOTAR ****
+//************************C00EX01*****VERSAO FINAL*********************/
 #include <unistd.h>
 
-void ft_print_alphabet(void)
+void	ft_print_alphabet(void)
 {
-    char x = 'a';
+	char	x;
 
-    while (x <= 'z')
-    {
-        write(1, &x, 1);
-        write(1, " ", 1);
-        x++;
-    }
+	x = 'a';
+	while (x <= 'z')
+	{
+		write(1, &x, 1);
+		x++;
+	}
 }
 
 int main(void)
@@ -176,7 +177,7 @@ void	ft_while(char x) // não atende ao protótipo do enunciado
 	}
 	write(1, &x, 1);
 	write(1, " ", 1);
-	ft_while(x - 1);
+	ft_while(x - 1);// ###############3 NAO ACEITA RECURSAO NESSE CONJUNTO DE EXERCICIOS [c00 obrigatorios]
 }
 
 void	ft_print_reverse_alphabet(void)
@@ -191,22 +192,19 @@ int	main(void)
 }
 
 // ALFABETO REVERSO __ usando IF [aceito]
+//************************C00EX02*****VERSAO FINAL*********************/
 #include <unistd.h>
-
-void	ft_print_reverse_char(char x)
-{
-	if (x < 'a')
-	{
-		write(1, "\n", 1);
-		return ;
-	}
-	write(1, &x, 1);
-	ft_print_reverse_char(x - 1);
-}
 
 void	ft_print_reverse_alphabet(void)
 {
-	ft_print_reverse_char('z');
+	char	x;
+
+	x = 'z';
+	while (x >= 'a')
+	{
+		write(1, &x, 1);
+		x--;
+	}
 }
 
 int	main(void)
@@ -220,13 +218,13 @@ int	main(void)
 
 void	ft_putchar(char x)
 {
-	if (x > '9')
+	if (x > '9')// ##### ESPERA QUE SEJA USADO WHILE OU LOOP
 	{
-		write(1, "\n", 1);
+		write(1, "\n", 1);// ###### ESCREVE BYTE NULO [\0] QUE PODE SER REJEITADO
 		return ;
 	}
 	write(1, &x, 1);
-	ft_putchar(x + 1);
+	ft_putchar(x + 1);// ###############3 NAO ACEITA RECURSAO NESSE CONJUNTO DE EXERCICIOS [c00 obrigatorios]
 }
 
 void	ft_print_numbers(void)
@@ -241,6 +239,19 @@ int	main(void)
 	return (0);
 }
 */
+
+//************************C00EX03*****VERSAO FINAL*********************/
+void	ft_print_numbers(void)
+{
+	char	x;
+
+	x = '0';
+	while (x <= '9')
+	{
+		write(1, &x, 1);
+		x++;
+	}
+}
 
 // RETORNA SE NEGATIVO
 #include <unistd.h>
@@ -267,7 +278,8 @@ int	main(void)
 }
 */
 
-// EX05 - IMPRIMIR COMBINAÇÃO DE 3 DÍGITOS
+// EX05 - IMPRIMIR COMBINAÇÃO DE 3 DÍGITOS 		<<< man ascii >>>
+//************************C00EX05*****VERSAO FINAL*********************/
 #include <unistd.h>
 
 void	ft_putchar(char n)
@@ -290,10 +302,10 @@ void	ft_print_comb(void)
 			c = b + 1;
 			while (c <= 9)
 			{
-				ft_putchar(a + '0');
+				ft_putchar(a + '0'); // notação para transformar no valor correspondente ascii
 				ft_putchar(b + '0');
 				ft_putchar(c + '0');
-				if (a != 7 | b != 8 | c != 9)
+				if (a != 7 | b != 8 | c != 9)// gepeto disse que o operador mais correto seria || (logical OR), ao inves de | (bitwise OR) que opera bit a bit e poderia gerar erro na comparacao - nesse caso nao gerou, mas melhor evitar 
 				{
 					write(1, ", ", 2);
 				}
@@ -311,3 +323,304 @@ int	main(void)
 	return (0);
 }
 */
+
+//EX06 ___ tentativa que não compara a dupla igual
+void	ft_putchar(char n)
+{
+	write(1, &n, 1);
+}
+
+void	ft_print_comb(void)
+{
+	int	a;
+	int	b;
+	int	c;
+	int	d;
+
+	a = 0;
+	while (a <= 9)
+	{
+		b = 0;
+		while (b <= 8)
+		{
+			c = 0;
+			while (c <= 9)
+			{
+				d = 0;
+				if (a != c && b != d)
+				{
+					d = b + 1;
+				}
+				else
+				{
+					while (d <= 9)
+					{
+						ft_putchar(a + '0');
+						ft_putchar(b + '0');
+						write(1, " ", 1);
+						ft_putchar(c + '0');
+						ft_putchar(d + '0');
+						if (a == 9 && b == 8 && c == 9 && d == 9)
+						{
+							write(1, "\n", 1);
+						}						
+						else
+						{
+							write(1, ", ", 2);
+						}
+					d++;
+					}
+				}
+				c++;
+			}
+			b++;
+		}
+		a++;
+	}
+}
+
+int	main(void)
+{
+	ft_print_comb();
+	return (0);
+}
+
+//EX06 ___USANDO ARRAY ((não consegui fazer a diferenciação))
+void arrayteste (char a[2] char b[2])
+{
+	a[0] = '0'
+	a[1] = '0'
+	b[0] = '0'
+	b[1] = a[1] + b[1] +1
+}
+
+//EX06 ___ CORRETO !!!!
+#include <unistd.h>
+
+void	ft_putchar(char x)
+{
+	write(1, &x, 1);
+}
+
+void	ft_print_number(int n)
+{
+	ft_putchar(n / 10 + '0');
+	ft_putchar(n % 10 + '0');
+}
+
+void	ft_print_comb2(void)
+{
+	int	a;
+	int	b;
+
+	a = 0;
+
+	while (a <= 98)
+	{
+		b = a + 1;
+		while (b <= 99)
+		{
+			ft_print_number(a);
+			write(1, " ", 1);
+			ft_print_number(b);
+			if (!(a == 98 && b == 99))
+			{
+				write(1, ", ", 2);
+			}
+			b++;
+		}
+		a++;
+	}
+	write(1, "\n", 1);
+}
+
+int	main(void)
+{
+	ft_print_comb2();
+	return (0);
+}
+
+//EX07___ ERRO POR NÃO TRATAR OS NUMEROS NEGATIVOS [quando entra na divisão os resultados bugam, precisa ser positivo]
+#include <unistd.h>
+
+void	ft_putchar(char x)
+{
+	write(1, &x, 1);
+}
+
+void	ft_print_number(int nb) 
+{
+	ft_putchar(nb / 100 + '0'); //char centena
+	ft_putchar(nb / 10 + '0'); //char dezena
+	ft_putchar(nb % 10 + '0'); //char unidade
+}
+
+void	ft_putnbr(int nb)
+{
+	int nb; // contador
+
+	ft_print_number();
+	return (nb);
+}
+//EX07 __ CORRIGIDO
+#include <unistd.h>
+
+void	ft_putchar(char d)
+{
+	write(1, &d, 1);
+}
+
+void	ft_print_number(int nb) // precisa abarcar o maior numero int : 2147483647 
+{
+	if (nb == 2147483648)
+	{
+		write(1, "-2147483648", 11); // problema: o INT_MIN não tem correspondente positivo (estouro da string)
+		return ;
+	if (nb < 0)
+	{
+		nb = -nb;
+		write(1, "-", 1);
+	}
+	if (nb >= 10)
+		ft_print_number(nb / 10); // recursiva, inicia de novo
+ft_putchar(nb % 10 + '0');
+}
+
+void	ft_putnbr(int nb)
+{
+	ft_print_number(nb);
+	write(1, "\n", 1);
+}
+
+int	main(void)
+{
+	ft_putnbr(-2147483648);
+	return (0);
+}
+
+//EX08 ___ 
+#include <unistd.h>
+
+void	ft_putchar(char x)
+{
+	write(1, &x, 1);
+}
+
+void	ft_print_number(int n)
+{
+	ft_putchar(n / 100 + '0'); //char centena
+	ft_putchar(n / 10 + '0'); //char dezena
+	ft_putchar(n % 10 + '0'); //char unidade
+}
+
+void	ft_print_comb2(void)
+{
+	int	a;
+	int	b;
+	int nb; // contador
+
+	a = 0;
+
+	while (a <= 98)
+	{
+		b = a + 1;
+		while (b <= 99)
+		{
+			ft_print_number(a);
+			write(1, " ", 1);
+			ft_print_number(b);
+			if (!(a == 98 && b == 99))
+			{
+				write(1, ", ", 2);
+			}
+			nb++; //conta cada vez que printa ??
+			b++;
+		}
+		a++;
+	}
+	return (nb);
+}
+
+int	main(void)
+{
+	ft_print_comb2();
+	return (0);
+}
+
+EX08_ versao toda errada
+
+void	ft_print_number(void)
+{
+	int	d;
+	int	n;
+
+	ft_putchar(d / 10 ^ n);
+	ft_putchar(d % 10 ^ n);
+	write(1, ", ", 2);
+}
+
+void	ft_print_combn(int d[])
+{
+	1 <= n <= 9;
+
+	int	i;
+	int	f;
+
+	d[0] = n; // condição de parada
+	d[9] = 1;
+
+	i = n - 1;
+	f = 10 - n;
+	d[n] = f;
+
+	i = 0;
+	while (d <= 987654321)
+	{
+		while (n <= 9)
+		{
+			ft_print_number(d);
+		}
+		if (d == 987654321)
+		{
+			write(1, "\n", 1);
+		}
+		else
+		{
+			write(1, ", ", 2);
+		}
+		d++;
+	}
+}
+
+int	main(void)
+{
+	ft_print_combn();
+	return (0);
+}
+
+/***********  *******  *  ***************/
+/**********  *******  **  ***************/
+/*********  ************  ***************/
+/**********  ***********  ***************/
+/*************  ********  ***************/
+
+#include <unistd.h>
+
+void	ft_ft(int *nbr)
+{
+	int	i;//inutil
+
+	nbr[i];
+
+	nbr[0] = '4';//int *nbr não é um array de char, mas sim um numero inteiro
+	nbr[1] = '2';
+
+	write(1, *nbr, 2);//o ex não pede para imprimir
+	write(1, '\0', 1);
+}
+
+int	main(void)
+{
+	ft_ft(int nbr);//é invalido declarar uma var ao chamar uma função
+	return (0);
+}
