@@ -547,7 +547,7 @@ int	main(void)
 	return (0);
 }
 
-EX08_ versao toda errada
+//EX08_ versao toda errada
 
 void	ft_print_number(void)
 {
@@ -622,5 +622,368 @@ void	ft_ft(int *nbr)
 int	main(void)
 {
 	ft_ft(int nbr);//é invalido declarar uma var ao chamar uma função
+	return (0);
+}
+
+// C01 EX00 
+	//(int *nbr) ponteiro do tipo int pra local *nbr // *nbr = 42 insere o valor 42 no local
+
+#include <unistd.h>
+
+void	ft_ft(int *nbr)
+{
+	*nbr = 42;
+}
+
+/*
+int	main(void)
+{
+	int	n;
+	
+	ft_ft(&n);
+	printf("%d\n", n);
+	return (0);
+}
+*/
+
+// C01 EX01 /***********  *******  *  ***************/
+
+#include <unistd.h>
+//#include <stdio.h> //so pra teste
+
+void	ft_ultimate_ft(int *********nbr)
+{
+	*********nbr = 42;
+}
+
+// int	main(void)
+// {
+// int	n;
+// int	*p1
+// int	**p2;
+// int	***p3;
+// int	****p4;
+// int	*****p5;
+// int	******p6;
+// int	*******p7;
+// int	********p8;
+// int	*********p9;
+
+//	n = 0; //qqr valor, so pra teste - sera alterado pela funcao
+// 	*p1 = &n;
+// 	**p2 = &p1;
+// 	***p3 = &p2;
+// 	****p4 = &p3;
+// 	*****p5 = &p4;
+// 	******p6 = &p5;
+// 	*******p7 = &p6;
+// 	********p8 = &p7;
+// 	*********p9 = &p8;
+
+// 	ft_ultimate_ft(int *********nbr);
+// 	printf("%d\n", *********nbr);
+// 	return (0);
+// }
+
+// C01 EX02 /***********  *******  *  ***************/
+#include <unistd.h>
+#include <stdio.h>
+
+void	ft_swap(int *a, int *b)
+{
+	int	aux; // cria um auxiliar pra armazenar o valor de a que vai ser substituido por b
+
+	aux = *a; //depois do = deve vir  uma variável, não um valor a ser aribuido (nesse caso uma expressão, pior ainda)
+	*a = *b;
+	*b = aux;
+}
+
+int	main(void)
+{
+	int	a = 11;
+	int	b = 22;
+
+	ft_swap(&a, &b);
+	printf("a = %d, b = %d\n", a, b);
+	return (0);
+}
+
+// C01 EX03 /***********ERRADO******  *  ***************/
+
+#include <unistd.h>
+#include <stdio.h>
+
+void	ft_div_mod(int a, int b, int *div, int *mod)
+{
+	if (b) // mesma coisa que if (0), ou seja, if true, if (b != 0)
+	{
+		(a / b) = div; //a conversão só faz sentido se for de valor > caracterr de impressão. Nesse caso só armazena, então não é necessário
+		(a % b) = mod; // o valor está dentro da main, aqui é a dereferencia *mod
+	}
+}
+
+void	main(void) // o correto "p/ portabilidade em C" é int main(void)
+{
+	int	n, n1, m, *div, *mod; // correto é div, mod
+
+	n = 11;
+	n1 = 10;
+	m = 5;
+
+	ft_div_mod(n, m, &div, &mod);
+	printf(div = "%d", mod = "%d\n", div, mod); // ERRADO " " !!!
+	return ();
+}
+
+// C01 EX03 /***********CORRETO**********************/
+#include <unistd.h>
+//#include <stdio.h>
+
+void	ft_div_mod(int a, int b, int *div, int *mod)
+{
+	if (b) // mesma coisa que if (0), ou seja, if true, if (b != 0)
+	{
+		*div = (a / b);
+		*mod = (a % b);
+	}
+}
+
+// int	main(void)
+// {
+// 	int	n, n1, m, div, mod;
+
+// 	n = 11;
+// 	n1 = 10; // segundo valor só para teste
+// 	m = 5; 
+
+// 	ft_div_mod(n, m, &div, &mod);
+// 	printf("div = %d, mod = %d\n", div, mod);
+// 	ft_div_mod(n1, m, &div, &mod);
+// 	printf("div = %d, mod = %d\n", div, mod);
+// 	return (0);
+// }
+
+// C01 EX04 /********************************/
+agora o valor e o resultado estão armazenados no mesmo int, 
+por isso precisa ter uma int aux que vai existir apenas no processo de calculo.
+
+#include <unistd.h>
+
+void	ft_ultimate_div_mod(int *a, int *b)
+{
+	if (*b) // se (b) errado, não quero validar se o valor b != 0, mas sim se o valor no local *b != 0
+	{
+		*a = (a / b);
+		*b = (a % b); //desse jeito não esta salvando o valor *a antes de sobrescrevelo
+	}
+}
+
+// C01 EX04 /***********CORRETO**********************/
+
+#include <unistd.h>
+#include <stdio.h>
+
+void	ft_ultimate_div_mod(int *a, int *b)
+{
+	int	aux;
+
+	aux = *a;
+
+	if (*b)
+	{
+		*a = (aux / *b);
+		*b = (aux % *b);
+	}
+}
+
+int	main(void)
+{
+	int	a, b, a2;
+
+	a = 11;
+	a2 = 10; // segundo valor só para teste
+	b = 5; 
+
+	ft_ultimate_div_mod(&a, &b);
+	printf("*a = %d, *b = %d\n", a, b);
+	ft_ultimate_div_mod(&a2, &b);
+	printf("*a = %d, *b = %d\n", a, b);
+	return (0);
+}
+
+// C01 EX05 /***********try**********************/
+
+não precisa de var temp , nem de \n quebra de linha. 
+a condição de parada está dentro de while
+#include<unistd.h>
+
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	write(1, "\n", 1);
+}
+
+int	main(void)
+{
+	char	*x = "hanananay"; // mesmo tipo de parametro
+
+	ft_putstr(x); 
+	return (0);
+}
+
+// C01 EX06 /***********try**********************/
+pra imprimir o numero com write, precisa de ft_putnbr - recursivamente vai imprimindo o digito e calculando o resto
+melhor mesmo usar printif para testar 
+#include <unistd.h>
+//#include <stdio.h>
+
+int	ft_strlen(char *str)
+{
+	int	i; //posição do char
+
+	i = 0; //lembrar de usar o inteiro e não o caractere '0';
+	while (str[i] != '\0') //termina ao final da string
+	{
+		i++; // incrementa pra contar o total
+	}
+	return (i); //retorna (um int)o valor final, mas não imprime, só salva
+}
+
+// int	main(void)
+// {
+// 	char	*entrada = "molabanana 01";
+// 	int		aux;
+
+// 	aux = ft_strlen(entrada);
+// 	printf("a string tem %d caracteres\n", aux);
+// 	return (0);
+// }
+
+// C01 EX07 /***********CORRETO**********************/
+
+sizeof(tab) retorna o tamanho total em bytes do array tab.
+
+sizeof(tab[0]) retorna o tamanho em bytes de um elemento do array (no caso, um int).
+
+Dividindo o total pelo tamanho de um elemento, você obtém a quantidade de elementos.
+
+#include <unistd.h>
+
+void	ft_rev_int_tab(int *tab, int size)
+{
+	int	start;
+	int	end;
+	int	aux;
+
+	end = size - 1;
+	start = 0;
+	while (end > start)
+	{
+		aux = tab[start];
+		tab[start] = tab[end];
+		tab[end] = aux;
+		start++;
+		end--;
+	}
+}
+
+#include <stdio.h>
+
+int	main(void)
+{
+	int	tab[] = {1,2,3,5,8}; //entrada // um inteiro literal como 5789 não é aceito // um array dado na main é considerado estático
+	int	aux;
+	int	size = sizeof(tab) / sizeof(tab[0]); //descobre o tamanho do **ponteiro** que aponta p/ um array estático
+
+	ft_rev_int_tab(tab, size);//inversao
+
+	write(1, "tab reverso é", 15);
+	aux = 0; // só pra inicializar
+	while (aux < size)
+	{
+		printf(" %d", tab[aux]);//saida
+		aux++;
+	}
+	printf("\n");
+	return (0);
+}
+
+// C01 EX08 /***********try*QUASE*********************/
+#include <unistd.h>
+
+void	ft_sort_int_tab(int *tab, int size)
+{
+	int	start;
+	int	next;
+	int	aux;
+
+	start = 0;
+	while (start < size - 1) //(size - 1) = fim do array
+	{
+		next = 0;
+		while (next < size - 1 - start) //compara (tab[1] > tab[0]), se vdd, está em ordem.
+		{
+			if (tab[next] > tab[next + 1])
+				aux = tab[next]; //salva aux = tab[0]
+				tab[next] = tab[next + 1]; //compara tab[0] com tab[2]
+				tab[next + 1] = aux; //sobrescreve tab[2] com aux(tab[0])
+			next++; //tab[2] //++tab[3]
+		}
+		start++;
+	}
+}
+
+// C01 EX08 /***********CORRETO**********************/
+
+#include <unistd.h>
+
+void	ft_sort_int_tab(int *tab, int size)
+{
+	int	start;
+	int	next;
+	int	aux;
+
+	start = 0;
+	while (start < size - 1) //(size - 1) = fim do array
+	{
+		next = 0;
+		while (next < size - 1 - start) //compara (tab[1] > tab[0]), se vdd, está em ordem.
+		{
+			if (tab[next] > tab[next + 1])
+			{
+			aux = tab[next];
+			tab[next] = tab[next + 1];
+			tab[next + 1] = aux;
+			}
+			next++;
+		}
+		start++;
+	}
+}
+
+#include <stdio.h>
+
+int	main(void)
+{
+	int	tab[] = {5, 3, 2, 4, 1};
+	int	size = 5;
+	int	start;
+
+	ft_sort_int_tab(tab, size);
+
+	start = 0;
+	while (start < size)
+	{
+		printf("%d ", tab[start]);
+		start++;
+	}
+	printf("\n");
 	return (0);
 }
