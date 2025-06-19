@@ -1,0 +1,126 @@
+```
+STRLCP(3)                  Manual do Programador Linux                 STRLCP(3)
+
+NOME
+       strlcpy, strlcat - cópia e concatenação de strings com tamanho seguro
+
+SINOPSES
+       #include <string.h> /* ou <bsd/string.h> em alguns sistemas Linux */
+
+       size_t strlcpy(char * restrict dst, const char * restrict src, size_t size);
+
+DESCRIÇÃO
+       A função strlcpy() copia strings de uma maneira mais segura e consistente
+       que suas alternativas mais antigas, como strcpy() e strncpy().
+
+       Ela copia até size - 1 caracteres da string src (terminada em NUL) para
+       o buffer dst, garantindo a adição de um terminador NUL ('\0') ao final
+       do resultado, desde que size seja maior que 0.
+
+       O argumento 'size' deve ser o tamanho total do buffer de destino 'dst'
+       (ou seja, sizeof(dst)), e não apenas o número de caracteres a serem
+       copiados.
+
+       Ao contrário de strncpy(), strlcpy() sempre garante que a string de
+       destino será terminada com NUL, prevenindo uma classe comum de bugs de
+       buffer overflow.
+
+VALOR DE RETORNO
+       A função strlcpy() retorna o comprimento total da string que ela tentou
+       criar. Para strlcpy(), isso significa o comprimento de src (strlen(src)).
+
+       Se o valor de retorno for >= size, significa que a string de destino
+       foi truncada. O programador pode (e deve) verificar isso para detectar
+       a perda de dados.
+
+EXEMPLOS
+       char src[] = "Uma string de exemplo muito longa";
+       char dst[20];
+       size_t len;
+
+       len = strlcpy(dst, src, sizeof(dst));
+
+       // dst conterá "Uma string de exem"
+       // len será 33 (strlen(src))
+
+       if (len >= sizeof(dst)) {
+           // O printf abaixo será executado
+           printf("A string original foi truncada.\n");
+       }
+
+VER TAMBÉM
+       strcpy(3), strncpy(3), strlcat(3), snprintf(3)
+
+(END)
+gemini@linux-simulation:~$ 
+```
+```
+STRNCMP(3)                 Manual do Programador Linux                STRNCMP(3)
+
+NOME
+       strncmp - compara duas strings (até n bytes)
+
+SINOPSES
+       #include <string.h>
+
+       int strncmp(const char *s1, const char *s2, size_t n);
+
+DESCRIÇÃO
+       A função strncmp() compara os primeiros n bytes das strings s1 e s2.
+
+       Ela funciona da seguinte maneira: os bytes de s1 e s2 são comparados
+       um a um. A comparação para na primeira vez que uma das seguintes
+       condições é encontrada:
+
+       1. Um byte em s1 é diferente do byte correspondente em s2.
+       2. Um terminador nulo ('\0') é encontrado em uma das strings.
+       3. n bytes já foram comparados.
+
+       A principal diferença para a função strcmp() é que strncmp() não
+       compara além dos primeiros n bytes. Isso a torna mais segura contra
+       leituras fora dos limites do buffer se as strings não forem
+       corretamente terminadas com NUL.
+
+VALOR DE RETORNO
+       A função strncmp() retorna um inteiro que indica o resultado da
+       comparação, como se segue:
+
+       · < 0  se o primeiro byte diferente tiver um valor menor em s1 do que em s2.
+       · = 0  se os primeiros n bytes de s1 e s2 forem iguais.
+       · > 0  se o primeiro byte diferente tiver um valor maior em s1 do que em s2.
+
+       Nota: É um erro comum assumir que os valores de retorno são apenas -1, 0
+       e 1. O código deve sempre testar o resultado em relação a zero
+       (ex: if (ret < 0), if (ret == 0), if (ret > 0)).
+
+EXEMPLOS
+       #include <stdio.h>
+       #include <string.h>
+
+       int main(void) {
+           const char *s1 = "abcdef";
+           const char *s2 = "abcxyz";
+           int ret;
+
+           // Compara os primeiros 3 caracteres ('a','b','c')
+           ret = strncmp(s1, s2, 3);
+           if (ret == 0) {
+               printf("Os 3 primeiros caracteres são iguais.\n");
+           }
+
+           // Compara os primeiros 4 caracteres. A comparação para em 'd' vs 'x'.
+           // Como 'd' (100) < 'x' (120), o resultado é negativo.
+           ret = strncmp(s1, s2, 4);
+           if (ret < 0) {
+               printf("s1 é menor que s2 nos primeiros 4 caracteres.\n");
+           }
+
+           return 0;
+       }
+
+VER TAMBÉM
+       strcmp(3), strcasecmp(3), strncasecmp(3), memcmp(3)
+
+(END)
+gemini@linux-simulation:~$ 
+```
