@@ -987,3 +987,162 @@ int	main(void)
 	printf("\n");
 	return (0);
 }
+
+// C03 EX00 /***********try**********************/
+<string.h> //funçao strcmp()
+// compara duas strings byte a byte. 
+//quando os dois valores coincidem, retorna (0)
+(0) é a diferença entre os dois valores ascii, ou seja se for "a" e "a", int(48) - int(48) = 0
+// se diferentes, o valor da diferença é retornado e a varredura PARA.
+//se toda a string coincide, para quando encontra NULL.
+// unsigned char >> trata negativos corretamente
+
+
+#include <unistd.h>
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i]) //enquanto houver char em 1, em 2, E forem iguais
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+#include <stdio.h>
+
+int	main(void)
+{
+	char	*str1 = "banana";
+	char	*str2 = "batata";
+	char	*str3 = "banana";
+	char	*str0 = "";
+
+	printf("%s, %s, %d\n", str1, str2, ft_strcmp(str1, str2)); //%s >> determina formato de saída, no caso s = string. Na sequencia str1, é o char apontado como parametro
+	printf("%s, %s, %d\n", str1, str3, ft_strcmp(str1, str3));//%d >> determina saída de número inteiro com sinal em base decimal, por isso ft_strcmp é int.
+	printf("%s, %s, %d\n", str1, str0, ft_strcmp(str1, str0));
+
+	return (0);
+}
+
+// C03 EX02 /***********try**********************/
+
+#include <unistd.h>
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0') //conta o tamanho de str
+	{
+		i++;
+	}
+	return (i); //salva em i
+}
+
+char	*ft_strcat(char *dest, char *src)
+{
+	int	len;
+	int	i;
+
+	i = 0;
+	while (dest[i] != '\0') //caminha até o final de dest
+	{
+		i++;
+	}
+	len = 0;
+	while (src[len] != '\0') //passa a caminhar até o final de src == concatena
+	{
+		dest[i] = src[len]; //copia o char[i] de src na mesma posição [len=i] a partir do final da string
+		i++; //caminha no indice de destino
+		len++; //caminha no indice de origem
+	}
+
+	dest[i] = '\0'; //adc o terminador
+	return (dest);
+}
+
+int	main(void) //se declarei int ele deveria retornar int
+{
+	char	src[] = "vida-breve";
+	char	dest[100] = "sem-código";
+
+	ft_strcat(dest, src); //concatena
+
+	int	len = ft_strlen(dest); //mede a str resultante
+
+	write(1, dest, len);
+	return (0); //nunca é vazio
+}
+
+// C03 EX01 /**********ok*********************/
+
+#include <unistd.h>
+
+int	ft_strncmp(char *s1, char *s2, unsigned int n)
+{
+	unsigned int	index;
+
+	index = 0;
+	while (s1[n] && s2[n] && s1[index] == s2[index])
+	{
+		index++;
+	}
+	if (index == n)
+		return (0);
+	return ((unsigned char)s1[index] - (unsigned char)s2[index]);
+}
+
+#include <stdio.h>
+
+int	main(void)
+{
+	char	*s1 = "banana";
+	char	*s2 = "batata";
+	char	*s3 = "banana";
+	char	*s0 = "";
+
+	printf("%s, %s, %d\n", s1, s2, ft_strncmp(s1, s2, 6)); //%s >> determina formato de saída, no caso s = string. Na sequencia str1, é o char apontado como parametro
+	printf("%s, %s, %d\n", s1, s3, ft_strncmp(s1, s3, 6));//%d >> determina saída de número inteiro com sinal em base decimal, por isso ft_strcmp é int.
+	printf("%s, %s, %d\n", s1, s0, ft_strncmp(s1, s0, 6));
+
+	return (0);
+}
+
+// C03 EX05 /**********ok*********************/
+//#include <stdio.h>
+unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+{
+	unsigned int	dest_len;
+	unsigned int	src_len;
+	unsigned int	i;
+
+	dest_len = 0;
+	while (dest[dest_len])
+		dest_len++;
+	src_len = 0;
+	while (src[src_len])
+		src_len++;
+	if (dest_len >= size)
+		return (size + src_len);
+	if (size > 0)
+	{
+		i = 0;
+		while (src[i] && (dest_len + i) < size - 1)
+		{
+			dest[dest_len + i] = src[i];
+			i++;
+		}
+		dest[dest_len + i] = '\0';
+	}
+	return (dest_len + src_len);
+}
+/*
+int	main(void)
+{
+	char	dest[10] = "Hello ";
+	ft_strlcat(dest, "World!", 10);
+	printf("%s", dest);
+}*/
