@@ -1,0 +1,87 @@
+c3r8p2% pwd
+/home/ljesus/entregas
+c3r8p2% cd ..
+c3r8p2% git clone git@vogsphere-v2.42sp.org.br:vogsphere/intra-uuid-c41999b1-0dc6-4605-ae77-20819d5deacb-7169495-marbelas marbelas
+Cloning into 'marbelas'...
+remote: Enumerating objects: 12, done.
+remote: Counting objects: 100% (12/12), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 12 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (12/12), done.
+c3r8p2% cd marbelas 
+c3r8p2% ls
+ex01  ex02  ex03  ex04  ex05
+c3r8p2% cd ex01
+c3r8p2% ls
+print_groups.sh
+c3r8p2% export FT_USER=bocal
+c3r8p2% ./print_groups.sh 
+bocal,adm,cdrom,sudo,dip,plugdev,users,libvirt%                                               
+c3r8p2% export FT_USER=daemon
+c3r8p2% ./print_groups.sh    
+daemon%                                                                                       
+c3r8p2% cat print_groups.sh 
+id -Gn "$FT_USER" | tr ' ' ',' | tr -d '\n'
+c3r8p2% cd ..
+c3r8p2% cd ex02
+c3r8p2% ./find_sh.sh 
+./find_sh
+c3r8p2% cd ..
+c3r8p2% cd ex03
+c3r8p2% ls
+count_files.sh
+c3r8p2% ./count_files.sh 
+2
+c3r8p2% cd ..
+c3r8p2% cd ex04
+c3r8p2% ifconfig
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 72:fa:86:39:cd:fa  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+enp3s0f0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.13.8.2  netmask 255.255.0.0  broadcast 10.13.255.255
+        inet6 fe80::6afe:f7ff:fe13:35b5  prefixlen 64  scopeid 0x20<link>
+        ether 68:fe:f7:13:35:b5  txqueuelen 1000  (Ethernet)
+        RX packets 7724351  bytes 2606683839 (2.6 GB)
+        RX errors 0  dropped 96  overruns 0  frame 0
+        TX packets 8750450  bytes 6214500467 (6.2 GB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 17  
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 74773  bytes 11203721 (11.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 74773  bytes 11203721 (11.2 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:f2:16:a4  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+c3r8p2% cat MAC.sh 
+ifconfig | awk ' /ether/ {print $2}'
+c3r8p2% ./MAC.sh
+72:fa:86:39:cd:fa
+68:fe:f7:13:35:b5
+52:54:00:f2:16:a4
+c3r8p2% cd ..
+c3r8p2% cd ex05
+c3r8p2% ls
+'"\?$*'\''MaRViN'\''*$?\"'
+c3r8p2% ls -lRa *MaRV* | cat -e
+-rw-r--r-- 1 ljesus 2026_42sp 3 Jan 14 15:47 "\?$*'MaRViN'*$?\"$
+c3r8p2% cat \"\\\?\$\*\'MaRViN\'\*\$\?\\\" 
+42
+c3r8p2% 
