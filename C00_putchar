@@ -1,0 +1,67 @@
+#include <unistd.h>
+
+void	ft_putchar(char n)
+{
+	write(1, &n, 1);
+}
+
+void	ft_print_comb(void)
+{
+	int	u;
+	int	d;
+	int	c;
+// int c, d, u; declaraçao curta economiza linhas - mas a norma 42 nao aceita
+	c = 0;
+	while (c <= 7) // e possivel declarar o incremento dentro da condiçao (c++ <= 7), porem precisa compensar com ajuste no inicio c = -1, para começar corretamente no 0 e nao no 1
+	{
+		d = c + 1;// reseta o valor para seguir no loop da dezena "019, 021, 023,". precisa estar dentro do loop da centena para reavaliar a cada dezena
+		while (d <= 8)
+		{
+			u = d + 1;
+			while (u <= 9)
+			{
+				ft_putchar( c + '0');// adc o '0' para converter o numero absoluto usado nos parametros (?)
+				ft_putchar( d + '0');
+				ft_putchar( u + '0');
+				if( c != 7 || d != 8 || u != 9 )// escreve virgula se nao for o ultimo num '789'. operador '&&' '|' ou '||' - CHECAR SE NORMA ACEITA if (!(c == 7 && d == 8 && u == 9))
+					write (1, ", ", 2);//esse if nao precisa de chave pois so tem uma condiçao, 3 linhas > 1 linha
+				u++;
+			}
+			d++;
+		}
+		c++;
+	}
+}
+
+int	main(void)
+{
+	ft_print_comb();
+	return (0);
+}
+
+##### Outra soluçao mais curta
+
+void	ft_print_comb(void)
+{
+	int	c;
+	int	d;
+	int	u;
+
+	c = '0' - 1;
+	while (++c <= '7')
+	{
+		d = c;
+		while (++d <= '8')
+		{
+			u = d;
+			while (++u <= '9')
+			{
+				ft_putchar(c);
+				ft_putchar(d);
+				ft_putchar(u);
+				if (!(c == '7' && d == '8' && u == '9'))
+					write(1, ", ", 2);
+			}
+		}
+	}
+}
