@@ -1,0 +1,319 @@
+## PONTEIROS
+
+```c
+int main(void)
+{
+	char    c;
+	char*   ptr;
+
+	c = 'L';
+	ptr = &c;
+	*ptr = '0';
+	write(1, &c, 1);
+	return (1);
+}
+```
+
+O programa acima:
+- armazena o char c no endereço disponível X, 
+- cria o ponteiro do tipo char
+- armazena o valor 'L' em char c
+- aponta o endereco X (chamado de char c e escrito como &c) como ptr
+- altera o conteudo de &c para '0'
+Quando a funcao consulta &c para impressao, encontra '0'
+
+```c
+#include <unistd.h>
+
+void	ft_ft(int *nbr)
+{
+	*nbr = 42;// nao se usa '' pois o int retornaria o valor do caractere '42' de ASCII
+}
+
+// nao se usa write porque a questao nao pede impressao.
+int	main(void)
+{
+	int i;//quando a var eh declarada no main, continua existindo apos a execucao da funcao
+	i = 0;// define 0 como valor. Se nao declarar, o i vai continuar com o valor salvo ali em algum outro momento. [ver LIXO DE MEMORIA]
+	ft_ft(&i);//o argumento deve ser o endereco que contem o valor de int apontado pelo parametro
+	printf("%d\n", i);// para testar precisa usar printf <stdio.h> OU ft_putchar
+	return (0);
+}
+
+```
+
+### C01 ponteiro de nove niveis
+
+```c
+#include <unistd.h>
+
+void	ft_ultimate_ft(int *********nbr)
+{
+	*********nbr = 42;
+}
+
+int main(void)
+{
+    int n;
+    int *p1;
+    int **p2;
+    int ***p3;
+    int ****p4;
+    int *****p5;
+    int ******p6;
+    int *******p7;
+    int ********p8;
+    int *********p9;
+
+    n = 0;
+    p1 = &n;   // p1 aponta para n
+    p2 = &p1;  // p2 aponta para p1
+    p3 = &p2;  // ... e assim por diante
+    p4 = &p3;
+    p5 = &p4;
+    p6 = &p5;
+    p7 = &p6;
+    p8 = &p7;
+    p9 = &p8;
+
+    ft_ultimate_ft(p9); // Agora sim, p9 é do tipo int *********
+    return (0);
+}
+
+```
+Erros cometidos no processo:
+- Declarar os ponteiros e endereços na função, não no main. Isso não faz sentido porque ambos precisam conseguir existindo fora da função.
+- Erro ao chamar o tipo de parâmetro :: a função somente aceita um ponteiro de nível 9 :: Não serve a inclusão, de int n, o valor, ou o endereço (n, 42, &n)
+
+### C01 ft_swap
+
+**Crie uma função que troque os valores de dois inteiros usando seus endereços recebidos como parâmetros.**
+
+```c
+#include <unistd.h>
+#include <stdio.h>
+
+void	ft_swap(int *a, int *b)
+{
+	int	temp;
+
+	temp = *b;
+	*b = *a;
+	*a = temp;
+}
+
+```
+A biblioteca <stdio.h> não é permitida. Usada apenas para rodar a resposta.
+```c
+int	main(void)
+{
+	int	a;
+	int	b;
+
+	a = 7;
+	b = 1;
+	ft_swap(&a, &b);
+	printf("int a = %d, int b = %d\n", a,b);
+	return (0);
+}
+
+```
+## C01 ft_div_mod
+**Esta função divide ‘a’ por ‘b’ e armazena o resultado no inteiro apontado por ‘div’.**
+**Ela também armazena o resto da divisão de ‘a’ por ‘b’ no inteiro apontado por ‘mod’**
+
+```c
+#include <unistd.h>
+#include <stdio.h>
+
+void	ft_div_mod(int a, int b, int *div, int *mod) //argumentos da ft: precisa receber dois valores e dois endereços
+{
+	if (b != 0)
+	{
+	*div = a / b;
+	*mod = a % b;
+	}
+}
+
+int	main(void)
+{
+	int	div; //determina o endereço de div
+	int	mod;
+
+	ft_div_mod(10, 3, &div, &mod);
+	printf("a/b = %d\nResto = %d\n", div, mod);
+	return (0);
+}
+
+```
+
+na chamada de função, no main, não faz sentido colocar a descrição do tipo de dado como argumento - isso é feito nos parâmetros da funcao la em cima 
+**Errado:**
+`ft_div_mod(10, 3, int *div, int *mod)`
+**Correto**
+`ft_div_mod(10, 3, &div, &mod)`
+
+As variáveis chamadas pelo `printf` devem estar declaradas no main (senão não existem né)
+
+**Prevenção de erro**
+Sempre adicionar a condição `if (b!= 0)` para o denominador não ser zero, e evitar CRASH do programa
+
+## C01 ft_ultimate_div_mod
+**Esta função divide o valor apontado por ‘a’ pelo valor apontado por ‘b’. O resultado da divisão é armazenado no inteiro apontado por ‘a’, enquanto o resto é armazenado no inteiro apontado por ‘b’.**
+
+```c
+#include <unistd.h>
+#include <stdio.h>
+
+void	ft_div_mod(int a, int b, int *div, int *mod) //argumentos da ft: precisa receber dois valores e dois endereços
+{
+	if (b != 0)
+	{
+	*div = a / b;
+	*mod = a % b;
+	}
+}
+
+int	main(void)
+{
+	int	div; //determina o endereço de div
+	int	mod;
+
+	ft_div_mod(10, 3, &div, &mod);
+	printf("a/b = %d\nResto = %d\n", div, mod);
+	return (0);
+}
+
+```
+
+## C01 ft_putstr
+**Crie uma função que exiba uma string de caracteres na saída padrão.**
+
+### String de caracteres
+é uma conveção de como guardar dados na memória
+- precisa ser um array de char > vetor de caracteres
+- precisa terminar no CARACTERE NULO \0	para ser string, se não for é apenas um array de char comum "sem final definido"
+
+```c
+#include <unistd.h>
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putstr(char *str)
+{
+	char	c[];// 
+// não existe char c[] > seria um array sem tamanho definido ou array sem ponto de inicio
+// não pode ser char	c[]; o vetor precisa ser int para guardar o tamanho da string
+	c[] = *str;
+// str >> marca o LOCAL DA MEMÓRIA do inicio do array
+// str[i] >> aponta o tamanho do array, ou seja, quantas vezes o vetor se move após o inicio 
+
+	while (*str != 0)
+// aspas simples no carctere nulo
+	{
+		ft_putchar(&str);
+		str++;
+	}
+	ft_putchar(0); //imprime a notação de fim da string > ascii 0 = \0
+}
+
+int	main(void)
+{
+	char	str;//ERRADO determina o endereço do caractere
+	char	*str = "cehbruteos"; // string real tem o \0 automatico
+
+	ft_putstr(&str); //ERRADO pois não queremos que a função retorne o endereço do ponteiro *str. E ainda não teria fim por não conter uma string com final \0 neste endereço.
+	return (0);
+}
+
+```
+### PONTEIROS
+
+1. A Diferença entre str[i] e *str
+Embora pareçam diferentes, no C elas são exatamente a mesma coisa por baixo dos panos. A diferença é apenas a "sintaxe" (como você escreve).
+- str[i] (Indexação): Você trata a string como uma lista. O ponteiro str fica parado no início da string, e você pede: "me dê o valor que está $i$ posições à frente".
+- *str (Desreferenciação com Aritmética): Você acessa o valor onde o ponteiro está agora. Quando faz str++, você move o próprio ponteiro para o próximo endereço.
+
+
+1. [char *str] O endereço no início da "rua"
+2. [&str] O endereço da "placa" - pode ser em qqr lugar
+3. [str] O conteúdo da placa - que é o endereço do início da rua
+
+#### Versão Curta
+```c
+void	ft_putstr(char *str)
+{
+	while (*str) // O mesmo que (*str != '\0'), enquanto verdadeiro - input = string. Se for falso - input = \0 = 0 ascii
+	{
+		ft_putchar(*str);
+		str++; // Move o ponteiro para a próxima letra
+	}
+}
+```
+
+#### Versão Longa (mais legível)
+```c
+#include <unistd.h>
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+	ft_putchar(0);
+}
+
+int	main(void)
+{
+	char	*str = "cehbruteos"; //não podem estar na mesma linha
+
+	ft_putstr(str);
+	return (0);
+}
+
+```
+
+
+### Função strlen
+
+```c
+include <unistd.h>
+#include <stdio.h>
+
+void	ft_ultimate_div_mod(int *a, int *b)
+{
+	int	d;
+	int	r;
+
+	d = *a / *b;
+	r = *a % *b;
+	*a = d;
+	*b = r;
+}
+
+int	main(void)
+{
+	int	a;
+	int	b;
+
+	a = 20;
+	b = 3;
+	ft_ultimate_div_mod(&a, &b);
+	printf("Resultado da divisão = %d, resto %d\n", a, b);
+	return (0);
+}
+
+```
