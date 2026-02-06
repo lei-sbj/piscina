@@ -1,0 +1,110 @@
+c2r7p4% cd mtomanar 
+c2r7p4% ls
+ex00  ex01  ex02  ex03	ex04  ex05
+c2r7p4% cd ex00
+c2r7p4% cat z
+Z
+c2r7p4% cd ..
+c2r7p4% cd es01
+cd: no such file or directory: es01
+c2r7p4% cd ex01
+c2r7p4% ls
+testShell00.tar
+c2r7p4% tar -xf testShell00.tar 
+tar: testShell00: time stamp 2026-06-01 23:42:00 is 12017609.534509676 s in the future
+c2r7p4% ls
+testShell00  testShell00.tar
+c2r7p4% ls -l
+total 16
+-r--r-xr-x 1 ljesus 2026_42sp    40 Jun  1  2026 testShell00
+-rw-r--r-- 1 ljesus 2026_42sp 10240 Jan 13 21:24 testShell00.tar
+c2r7p4% cd ..
+c2r7p4% ls
+ex00  ex01  ex02  ex03	ex04  ex05
+c2r7p4% cd ex02
+c2r7p4% ls
+exo2.tar
+c2r7p4% tar -xf exo2.tar
+tar: test0: time stamp 2026-06-01 20:47:00 is 12006989.454812364 s in the future
+tar: test1: time stamp 2026-06-01 21:46:00 is 12010529.454778949 s in the future
+tar: test2: time stamp 2026-06-01 22:45:00 is 12014069.454752139 s in the future
+tar: test3: time stamp 2026-06-01 23:44:00 is 12017609.454684621 s in the future
+tar: test4: time stamp 2026-06-01 23:43:00 is 12017549.454674596 s in the future
+tar: test6: time stamp 2026-06-01 22:20:00 is 12012569.454663275 s in the future
+c2r7p4% ls -l           
+total 28
+-rw-r--r-- 1 ljesus 2026_42sp 10240 Jan 13 21:24 exo2.tar
+drwxr-xr-x 2 ljesus 2026_42sp    19 Jun  1  2026 test0
+-rwx--xr-- 1 ljesus 2026_42sp     4 Jun  1  2026 test1
+dr-x---r-- 2 ljesus 2026_42sp     6 Jun  1  2026 test2
+-r-----r-- 2 ljesus 2026_42sp     1 Jun  1  2026 test3
+-rw-r----x 1 ljesus 2026_42sp     2 Jun  1  2026 test4
+-r-----r-- 2 ljesus 2026_42sp     1 Jun  1  2026 test5
+lrwxrwxrwx 1 ljesus 2026_42sp     5 Jun  1  2026 test6 -> test0
+c2r7p4% cd ..
+c2r7p4% cd ex03
+c2r7p4% ls
+id_rsa_pub
+c2r7p4% cat id_rsa_pub 
+-----BEGIN OPENSSH PRIVATE KEY-----
+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
+-----END OPENSSH PRIVATE KEY-----
+c2r7p4% cd ..
+c2r7p4% cd ex04
+c2r7p4% ls
+midLS
+c2r7p4% cat midLS 
+ls -tmp
+c2r7p4% cd ..
+c2r7p4% ls -tmp
+ex02/, ex01/, ex00/, ex03/, ex04/, ex05/
+c2r7p4% ls
+ex00  ex01  ex02  ex03	ex04  ex05
+c2r7p4% cd ex05
+c2r7p4% ls
+git_commit.sh
+c2r7p4% cat git_commit.sh 
+git log -n 5 --format='%H'
+c2r7p4% bash git_commit.sh
+eceda3b056caf5526459a132a832bc8cca5ecf09
+c536a0bfe334e3faf1ad1247ba828e4bdb6b8c68
+6caedc2fa9be0f35b40419cf7c35a3f5d1e63d10
+8c05091611215493f2853a691f43d1e6ee408ff4
+64c5e0800c307c04c55fcca88b1ae63bca440e5b
+c2r7p4% 
+

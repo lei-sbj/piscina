@@ -1,0 +1,104 @@
+c2r7p4% cd daneves
+c2r7p4% ls
+ex01  ex02  ex03  ex04	ex05
+c2r7p4% cd ex01
+c2r7p4% ls
+print_groups.sh
+c2r7p4% bash print_groups.sh 
+2026_42sp%                                                                      c2r7p4% export FT_USER=bocal
+c2r7p4% 
+c2r7p4% bash print_groups.sh
+bocal,adm,cdrom,sudo,dip,plugdev,users,libvirt%                                 c2r7p4% export FT_USER=daemon
+c2r7p4% bash print_groups.sh 
+daemon%                                                                         c2r7p4% cat print_groups.sh 
+id -Gn $FT_USER | tr ' ' ',' | tr -d '\n'
+c2r7p4% cd ..
+c2r7p4% ls
+ex01  ex02  ex03  ex04	ex05
+c2r7p4% cd ex02
+c2r7p4% ls
+find_sh.sh
+c2r7p4% bash find_sh.sh 
+find_sh
+c2r7p4% CD .
+zsh: command not found: CD
+c2r7p4% cd .
+c2r7p4% ls
+find_sh.sh
+c2r7p4% cd ..
+c2r7p4% bash ../ex02/find_sh.sh
+bash: ../ex02/find_sh.sh: No such file or directory
+c2r7p4% bash ex02/find_sh.sh
+print_groups
+find_sh
+count_files
+MAC
+c2r7p4% ls
+ex01  ex02  ex03  ex04	ex05
+c2r7p4% cd ex03
+c2r7p4% ls
+count_files.sh
+c2r7p4% bash count_files.sh 
+2
+c2r7p4% cat count_files.sh 
+find | wc -l
+c2r7p4% find
+.
+./count_files.sh
+c2r7p4% cd ..
+c2r7p4% ls
+ex01  ex02  ex03  ex04	ex05
+c2r7p4% cd ex04
+c2r7p4% ls
+MAC.sh
+c2r7p4% bash MAC.sh 
+aa:ae:19:5f:5a:d2
+00:be:43:91:01:d7
+52:54:00:86:a3:44
+c2r7p4% cat MAC.sh 
+ifconfig | awk '/ether/ {print $2}'
+c2r7p4% ifconfig
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether aa:ae:19:5f:5a:d2  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+enp0s31f6: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.12.7.4  netmask 255.255.0.0  broadcast 10.12.255.255
+        inet6 fe80::2be:43ff:fe91:1d7  prefixlen 64  scopeid 0x20<link>
+        ether 00:be:43:91:01:d7  txqueuelen 1000  (Ethernet)
+        RX packets 11582437  bytes 6191318059 (6.1 GB)
+        RX errors 0  dropped 98  overruns 0  frame 0
+        TX packets 15750129  bytes 15134082357 (15.1 GB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 19  memory 0x74400000-74420000  
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 138579  bytes 23247344 (23.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 138579  bytes 23247344 (23.2 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:86:a3:44  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+c2r7p4% cd ..
+c2r7p4% cd ex05
+c2r7p4% ls
+'"\?$*'\''MaRViN'\''*$?\"'
+c2r7p4% ls -lRa *MaRV* | cat -e
+-rw-r--r-- 1 ljesus 2026_42sp 2 Jan 13 22:02 "\?$*'MaRViN'*$?\"$
+c2r7p4% cat \"\\\?\$\*\'MaRViN\'\*\$\?\\\"
+42%                                                                             c2r7p4% 
+

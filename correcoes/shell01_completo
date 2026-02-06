@@ -1,0 +1,159 @@
+c3r7p1% pwd
+/home/ljesus/entregas
+c3r7p1% cd ..
+c3r7p1% cd correcoes 
+c3r7p1% git clone git@vogsphere-v2.42sp.org.br:vogsphere/intra-uuid-248d33e9-36f5-482d-a47e-7581d95af9ba-7168121-luiz-ede luiz-ede
+Cloning into 'luiz-ede'...
+remote: Enumerating objects: 47, done.
+remote: Counting objects: 100% (47/47), done.
+remote: Compressing objects: 100% (31/31), done.
+remote: Total 47 (delta 12), reused 0 (delta 0)
+Receiving objects: 100% (47/47), 4.39 KiB | 4.39 MiB/s, done.
+Resolving deltas: 100% (12/12), done.
+c3r7p1% cd luiz-ede 
+c3r7p1% ls
+ex00  ex01  ex02  ex03  ex04  ex05  ex06  ex07  ex08  ex09
+c3r7p1% cd ex00
+c3r7p1% cat z
+Z
+c3r7p1% cd ..
+c3r7p1% cd ex00
+c3r7p1% cat -z
+cat: invalid option -- 'z'
+Try 'cat --help' for more information.
+c3r7p1% cat -ez
+cat: invalid option -- 'z'
+Try 'cat --help' for more information.
+c3r7p1% cat -e z
+Z$
+c3r7p1% cd ..
+c3r7p1% cd ex01
+c3r7p1% ls
+testShell00.tar
+c3r7p1% tar -cf testShell00.tar testShell00
+tar: testShell00: Cannot stat: No such file or directory
+tar: Exiting with failure status due to previous errors
+c3r7p1% tar -xf testShell00.tar 
+c3r7p1% tar -cf testShell00.tar testShell00
+tar: testShell00: Cannot stat: No such file or directory
+tar: Exiting with failure status due to previous errors
+c3r7p1% ls -l
+total 12
+-rw-r--r-- 1 ljesus 2026_42sp 10240 Jan 15 19:48 testShell00.tar
+c3r7p1% tar -xf testShell00.tar            
+c3r7p1% ls
+testShell00.tar
+c3r7p1% tar -xvf testShell00.tar 
+c3r7p1% ls
+testShell00.tar
+c3r7p1% tar -xvf testShell00.tar
+c3r7p1% ls
+testShell00.tar
+c3r7p1% cd ..
+c3r7p1% cd ex02
+c3r7p1% ls
+exo2.tar
+c3r7p1% tar -xf exo2.tar 
+tar: test0: time stamp 2026-06-01 20:47:00 is 11840019.901926663 s in the future
+tar: test1: time stamp 2026-06-01 21:46:00 is 11843559.901861783 s in the future
+tar: test2: time stamp 2026-06-01 22:45:00 is 11847099.901848005 s in the future
+tar: test3: time stamp 2026-06-01 23:44:00 is 11850639.901827878 s in the future
+tar: test4: time stamp 2026-06-01 23:43:00 is 11850579.901818359 s in the future
+tar: test6: time stamp 2026-06-01 22:20:00 is 11845599.901805786 s in the future
+c3r7p1% ls -l           
+total 28
+-rw-r--r-- 1 ljesus 2026_42sp 10240 Jan 15 19:46 exo2.tar
+drwxr-xr-x 2 ljesus 2026_42sp    19 Jun  1  2026 test0
+-rwx--xr-- 1 ljesus 2026_42sp     4 Jun  1  2026 test1
+dr-x---r-- 2 ljesus 2026_42sp     6 Jun  1  2026 test2
+-r-----r-- 2 ljesus 2026_42sp     1 Jun  1  2026 test3
+-rw-r----x 1 ljesus 2026_42sp     2 Jun  1  2026 test4
+-r-----r-- 2 ljesus 2026_42sp     1 Jun  1  2026 test5
+lrwxrwxrwx 1 ljesus 2026_42sp     5 Jun  1  2026 test6 -> test0
+c3r7p1% cd ..
+c3r7p1% cd ex03
+c3r7p1% ls
+id_rsa_pub
+c3r7p1% cat id_rsa_pub 
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEmOfikqLBKHnObh3WKg5Y0LosM/AWwerJtPlWiXNhnn luizeduardodesouzagouvea@gmail.com
+
+c3r7p1% cd ..
+c3r7p1% cd ex04
+c3r7p1% ls
+midLS
+c3r7p1% cat midLS 
+ls -m -p -t%                                                                                  
+c3r7p1% cd ..
+c3r7p1% ls -mpt
+ex02/, ex00/, ex01/, ex03/, ex04/, ex05/, ex06/, ex07/, ex08/, ex09/
+c3r7p1% cd ..
+c3r7p1% cd ex05
+cd: no such file or directory: ex05
+c3r7p1% pwd
+/home/ljesus/correcoes
+c3r7p1% cd luiz-ede 
+c3r7p1% cd ex05
+c3r7p1% ls
+git_commit.sh
+c3r7p1% cat git_commit.sh 
+#!/bin/bash
+
+git log -n 5 --format="%H"
+c3r7p1% bash git_commit.sh 
+6612ba52b92183608cf8578a23dbfc69958b9689
+1dbfa633eccd5b68951af2ca391c566a6ea6b527
+eff52e933c17228f3b831d4b1d87fc64aec092fc
+eecd9118413ffc713d7644850458144f33ca7bae
+4c76c4c50814eda063d12bf84ab9e476c1f62286
+c3r7p1% cd .
+c3r7p1% pwd
+/home/ljesus/correcoes/luiz-ede/ex05
+c3r7p1% cd ..
+c3r7p1% cd ex06
+c3r7p1% ls
+git_ignore.sh
+c3r7p1% touch .DS_Store
+c3r7p1% touch mywork.c
+c3r7p1% touch mywork.c~
+c3r7p1% rm touch mywork~
+rm: cannot remove 'touch': No such file or directory
+rm: cannot remove 'mywork~': No such file or directory
+c3r7p1% rm touch mywork.c
+rm: cannot remove 'touch': No such file or directory
+c3r7p1% rm mywork.c      
+rm: cannot remove 'mywork.c': No such file or directory
+c3r7p1% ls
+git_ignore.sh  mywork.c~
+c3r7p1% bash git_ignore.sh | cat -e
+.DS_Store$
+mywork.c~$
+c3r7p1% cd ..
+c3r7p1% cd ex07
+c3r7p1% ls
+b
+c3r7p1% cd ..
+c3r7p1% cd ex08
+c3r7p1% ls
+clean
+c3r7p1% touch al~
+c3r7p1% touch #b#
+c3r7p1% ls
+ al~  '#b#'   clean
+c3r7p1% ./clean
+./al~
+./#b#
+c3r7p1% ls
+clean
+c3r7p1% cat clean 
+#!/bin/bash
+
+find . \( -name "*~" -o -name "#*#" \) -print -delete
+c3r7p1% cd ..
+c3r7p1% cd ex09
+c3r7p1% ls
+ft_magic
+c3r7p1% printf '%0.sX' {1..42} > teste
+c3r7p1% cat ft_magic 
+42      string  42      42 file
+c3r7p1% 
+c3r7p1% 
